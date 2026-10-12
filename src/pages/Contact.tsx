@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { interestOptions } from '../data';
 import { navigate } from '../hooks/useHashRoute';
 import { PrimaryButton } from '../components/ui';
@@ -30,11 +30,6 @@ export default function Contact({ sent = false }: { sent?: boolean }) {
     message: '',
   });
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    navigate('#/contact/sent');
-  };
-
   return (
     <>
       <section className="relative overflow-hidden pt-24 pb-10 text-center md:pt-32">
@@ -58,11 +53,24 @@ export default function Contact({ sent = false }: { sent?: boolean }) {
             {!sent && (
               <div className="rounded-2xl border border-violet/20 bg-card p-5 sm:p-6 md:p-8">
                 <h2 className="font-display text-xl font-semibold text-white">Send Us a Message</h2>
-                <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-4">
+                <form
+                  action="https://formsubmit.co/cyhive.in@gmail.com"
+                  method="POST"
+                  className="mt-6 flex flex-col gap-4"
+                >
+                  <input type="hidden" name="_subject" value="New inquiry from the CYHIVE website" />
+                  <input type="hidden" name="_template" value="table" />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input
+                    type="hidden"
+                    name="_next"
+                    value={`${window.location.origin}${window.location.pathname}#/contact/sent`}
+                  />
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field label="Name *">
                       <input
                         required
+                        name="name"
                         className={fieldCls}
                         placeholder="Your full name"
                         value={form.name}
@@ -73,6 +81,7 @@ export default function Contact({ sent = false }: { sent?: boolean }) {
                       <input
                         required
                         type="email"
+                        name="email"
                         className={fieldCls}
                         placeholder="you@example.com"
                         value={form.email}
@@ -81,6 +90,7 @@ export default function Contact({ sent = false }: { sent?: boolean }) {
                     </Field>
                     <Field label="Phone (optional)">
                       <input
+                        name="phone"
                         className={fieldCls}
                         placeholder="+91 00000 00000"
                         value={form.phone}
@@ -89,6 +99,7 @@ export default function Contact({ sent = false }: { sent?: boolean }) {
                     </Field>
                     <Field label="Interested In">
                       <select
+                        name="interest"
                         className={fieldCls}
                         value={form.interest}
                         onChange={e => setForm({ ...form, interest: e.target.value })}
@@ -104,6 +115,7 @@ export default function Contact({ sent = false }: { sent?: boolean }) {
                   <Field label="Message *">
                     <textarea
                       required
+                      name="message"
                       rows={5}
                       className={`${fieldCls} resize-none`}
                       placeholder="Tell us what you're looking for or any questions you have..."
@@ -115,7 +127,7 @@ export default function Contact({ sent = false }: { sent?: boolean }) {
                     Submit Inquiry
                   </PrimaryButton>
                   <p className="text-center text-xs text-muted/70">
-                    Note: This form provides a simulated submission for the prototype. Please contact CYHIVE directly for confirmed communication.
+                    Your inquiry will be sent directly to CYHIVE.
                   </p>
                 </form>
               </div>
