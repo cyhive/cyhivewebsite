@@ -1,0 +1,11 @@
+{
+  "title": "CYHIVE — Technology Education & IT Services",
+  "description": "Empowering tomorrow's tech leaders through expert-led training, internships, and digital solutions.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
