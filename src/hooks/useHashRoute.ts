@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 export type Route =
   | { name: 'home'; hash?: string }
   | { name: 'about' }
+  | { name: 'works' }
   | { name: 'contact'; sent?: boolean }
   | { name: 'courses' }
   | { name: 'course'; slug: string }
@@ -18,6 +19,7 @@ function parse(hash: string): Route {
 
   if (parts.length === 0) return { name: 'home' };
   if (parts[0] === 'about') return { name: 'about' };
+  if (parts[0] === 'works') return { name: 'works' };
   if (parts[0] === 'contact') return { name: 'contact', sent: parts[1] === 'sent' };
   if (parts[0] === 'courses' && parts[1]) return { name: 'course', slug: parts[1] };
   if (parts[0] === 'courses') return { name: 'courses' };
@@ -28,18 +30,22 @@ function parse(hash: string): Route {
   return { name: 'home' };
 }
 
+let pendingScrollTarget: string | null = null;
+
 export function navigate(href: string) {
   if (href.startsWith('#/')) {
+    if (href === '#/' && (window.location.hash === '#/' || !window.location.hash)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     window.location.hash = href.slice(1);
     return;
   }
   if (href.startsWith('#')) {
     const id = href.slice(1);
     if (window.location.hash !== '#/' && !window.location.hash.startsWith('#/?')) {
+      pendingScrollTarget = id;
       window.location.hash = '/';
-      requestAnimationFrame(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-      });
       return;
     }
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -60,6 +66,22 @@ export function useHashRoute() {
     if (!window.location.hash) window.location.hash = '/';
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
+
+  useEffect(() => {
+    if (route.name !== 'home' || !pendingScrollTarget) return;
+    const id = pendingScrollTarget;
+    pendingScrollTarget = null;
+    let secondFrame = 0;
+    const firstFrame = requestAnimationFrame(() => {
+      secondFrame = requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      cancelAnimationFrame(secondFrame);
+    };
+  }, [route]);
 
   return route;
 }

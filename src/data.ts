@@ -5,7 +5,16 @@ import frontendImg from './assets/courses/image 4.png';
 import mobileImg from './assets/courses/image 5.png';
 import uiuxImg from './assets/courses/image 6.png';
 import graphicImg from './assets/courses/image 7.png';
-import aboutImg from './assets/about.jpg';
+import aboutImg from './assets/about-figma.png';
+import serviceWebImg from './assets/service-web.png';
+import serviceFrontendImg from './assets/service-frontend.png';
+import serviceMobileImg from './assets/service-mobile.png';
+import serviceAcademicImg from './assets/service-academic.png';
+import serviceGraphicImg from './assets/service-graphic.png';
+import internshipAiImg from './assets/internship-ai.png';
+import internshipDataStructuresImg from './assets/internship-data-structures.png';
+import internshipPythonImg from './assets/internship-python.png';
+import internshipNetworkingImg from './assets/internship-networking.png';
 
 export const aboutImage = aboutImg;
 
@@ -14,9 +23,10 @@ export type NavLink = { label: string; href: string };
 export const navLinks: NavLink[] = [
   { label: 'Home', href: '#/' },
   { label: 'About Us', href: '#/about' },
-  { label: 'Courses', href: '#/courses' },
-  { label: 'Internships', href: '#/internships' },
-  { label: 'Services', href: '#/services' },
+  { label: 'Courses', href: '#courses' },
+  { label: 'Internships', href: '#internships' },
+  { label: 'Services', href: '#services' },
+  { label: 'Our Works', href: '#/works' },
 ];
 
 export type Module = { title: string; summary: string };
@@ -203,8 +213,11 @@ export type Service = {
   slug: string;
   title: string;
   icon: string;
+  subtitle: string;
   desc: string;
   about: string;
+  image: string;
+  features: string[];
 };
 
 export const services: Service[] = [
@@ -212,36 +225,51 @@ export const services: Service[] = [
     slug: 'web-development',
     title: 'Web Development',
     icon: '💻',
+    subtitle: 'Full-Stack Solutions for the Modern Web',
     desc: 'End-to-end web development services — from concept and design to deployment and support.',
-    about: 'We build performant, scalable websites and web applications tailored to your product, from architecture to launch and ongoing support.',
+    about: 'We develop custom web applications tailored to your specific needs. Whether you need a business website, web platform, or complex web application, our team delivers clean code, optimized performance, and scalable architecture.',
+    image: serviceWebImg,
+    features: ['Custom web application development', 'Responsive and mobile-friendly design', 'Performance and SEO optimization', 'CMS integration', 'API development and integration', 'Ongoing maintenance and support'],
   },
   {
     slug: 'frontend-development',
     title: 'Frontend Development',
     icon: '🎨',
+    subtitle: 'Pixel-Perfect Interfaces That Perform',
     desc: 'Professional frontend development services focused on creating fast, accessible, and visually polished web interfaces.',
-    about: 'Pixel-accurate UI implementation with modern frontend stacks, accessibility, and performance as first-class requirements.',
+    about: 'Our frontend development service transforms designs into high-performance web interfaces. We build responsive, accessible, and interactive experiences using modern frameworks and best practices that delight users and perform at scale.',
+    image: serviceFrontendImg,
+    features: ['React, Vue, or vanilla JS development', 'Responsive and accessible UI', 'Performance optimization', 'Cross-browser compatibility', 'Design-to-code implementation', 'Component library development'],
   },
   {
     slug: 'mobile-app-development',
     title: 'Mobile App Development',
     icon: '📱',
+    subtitle: 'Native and Cross-Platform Mobile Solutions',
     desc: 'Mobile application development for iOS and Android — from concept to App Store launch.',
-    about: 'Native and cross-platform mobile apps designed for real users — from product concept through store submission.',
+    about: 'We develop cross-platform and native mobile applications that deliver smooth, engaging user experiences on iOS and Android. From consumer apps to enterprise solutions, we build mobile products that your users will love.',
+    image: serviceMobileImg,
+    features: ['Cross-platform development (React Native / Flutter)', 'Native iOS and Android development', 'UI/UX design for mobile', 'Backend API integration', 'Push notifications and device APIs', 'App Store and Play Store submission'],
   },
   {
     slug: 'academic-projects',
     title: 'Academic Projects',
     icon: '🎓',
+    subtitle: 'Technical Support for Academic Excellence',
     desc: 'Guidance and technical development support for academic projects across engineering and computer science disciplines.',
-    about: 'Structured support for academic and final-year projects: architecture, implementation, documentation, and presentation.',
+    about: 'We provide technical guidance and development support for academic projects including final-year projects, research implementations, and college assignments. Our support is focused on helping you understand and build, not just delivering a finished product.',
+    image: serviceAcademicImg,
+    features: ['Final-year project guidance', 'Technology selection and architecture', 'Implementation support', 'Documentation assistance', 'Testing and debugging support', 'Presentation preparation'],
   },
   {
     slug: 'graphic-design',
     title: 'Graphic Design',
     icon: '✏️',
+    subtitle: 'Visual Communication That Leaves an Impression',
     desc: 'Creative graphic design services including brand identity, digital assets, marketing materials, and social media graphics.',
-    about: 'Brand systems, marketing creatives, and digital assets that communicate clearly and look professional across channels.',
+    about: 'Our graphic design services help individuals, businesses, and organizations communicate visually. From logo design and brand identity to digital content and marketing materials, we craft visuals that are purposeful, consistent, and effective.',
+    image: serviceGraphicImg,
+    features: ['Logo and brand identity design', 'Social media graphics and templates', 'Marketing collateral design', 'Print-ready materials', 'Presentation design', 'Icon and illustration work'],
   },
 ];
 
@@ -249,8 +277,12 @@ export type Internship = {
   slug: string;
   title: string;
   icon: string;
+  headline: string;
   desc: string;
   about: string;
+  image: string;
+  topics: string[];
+  opportunities: string[];
 };
 
 export const internships: Internship[] = [
@@ -258,29 +290,45 @@ export const internships: Internship[] = [
     slug: 'artificial-intelligence',
     title: 'Artificial Intelligence',
     icon: '🤖',
+    headline: 'Explore the Foundations of AI',
     desc: 'Gain practical exposure to artificial intelligence concepts, machine learning fundamentals, and real-world AI applications.',
-    about: 'A focused internship covering AI foundations, practical ML workflows, and applied projects that connect theory to real use cases.',
+    about: "This internship program introduces you to the exciting world of artificial intelligence. You'll explore machine learning concepts, work with data, and apply AI techniques to solve practical problems — building foundational skills for a career in AI and data science.",
+    image: internshipAiImg,
+    topics: ['Introduction to AI and ML', 'Data exploration and preprocessing', 'Supervised learning concepts', 'Neural network fundamentals', 'Python for AI (NumPy, Pandas)', 'Model evaluation basics', 'AI use cases and applications', 'Responsible AI principles'],
+    opportunities: ['Work on structured AI learning tasks', 'Apply ML concepts to sample datasets', 'Build foundational projects using Python/ML libraries', 'Explore real-world AI problem statements'],
   },
   {
     slug: 'data-structures',
     title: 'Data Structures',
     icon: '🗂️',
+    headline: 'Strengthen Your Algorithmic Thinking',
     desc: 'Build a strong foundation in data structures and algorithms — essential knowledge for software development and technical interviews.',
-    about: 'Strengthen problem-solving with hands-on practice in core data structures, algorithms, and computational thinking.',
+    about: "This program is designed to strengthen your understanding of core computer science concepts. You'll study and implement fundamental data structures, develop problem-solving skills, and practice applying algorithms to real challenges — knowledge that is the base of all software development.",
+    image: internshipDataStructuresImg,
+    topics: ['Arrays and Lists', 'Linked Lists', 'Stacks and queues', 'Trees and graphs', 'Sorting algorithms', 'Searching algorithms', 'Recursion and backtracking', 'Time and space complexity'],
+    opportunities: ['Implement data structures from scratch', 'Practice problem solving with guided challenges', 'Analyze algorithm efficiency', 'Build computational thinking skills applicable across programming languages'],
   },
   {
     slug: 'python',
     title: 'Python',
     icon: '🐍',
+    headline: 'Practical Python for Real-World Applications',
     desc: 'Deepen your Python skills through hands-on tasks covering scripting, automation, data handling, and application development.',
-    about: 'Practical Python internship work spanning scripting, automation, data handling, and small application development.',
+    about: "This internship program focuses on applying Python to practical, real-world scenarios. You'll go beyond syntax and work on automation scripts, data processing tasks, and small application projects — developing the practical Python proficiency that employers value.",
+    image: internshipPythonImg,
+    topics: ['Python best practices', 'File I/O and automation', 'Working with APIs', 'Data handling with Pandas', 'Regular expressions', 'Error handling and debugging', 'Virtual environments', 'Script deployment'],
+    opportunities: ['Build automation scripts', 'Work on data processing tasks', 'Develop small Python applications', 'Practice debugging and code review'],
   },
   {
     slug: 'networking',
     title: 'Networking',
     icon: '🌐',
+    headline: 'Understand the Foundation of Modern Networks',
     desc: 'Learn computer networking fundamentals — protocols, architecture, security, and infrastructure that power the connected world.',
-    about: 'A structured look at networking protocols, architecture, troubleshooting, and the infrastructure behind connected systems.',
+    about: "This program provides a structured introduction to computer networking. You'll study how networks are designed, how data travels across them, and the protocols and security mechanisms that keep modern infrastructure running — building essential knowledge for IT and infrastructure careers.",
+    image: internshipNetworkingImg,
+    topics: ['OSI and TCP/IP models', 'IP addressing and subnetting', 'Routing and switching concepts', 'DNS, DHCP, and NAT', 'Wireless networking', 'Network security basics', 'Firewalls and VPNs', 'Network troubleshooting'],
+    opportunities: ['Study real network configurations', 'Explore network simulation tools', 'Practice subnetting and addressing', 'Learn network troubleshooting approaches'],
   },
 ];
 

@@ -8,6 +8,7 @@ const SPLASH_COLORS = ['#8B5CF6', '#7C3AED', '#A78BFA'];
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Works from './pages/Works';
 import { CourseDetail, CourseList, InternshipDetail, InternshipList, ServiceDetail, ServiceList } from './pages/Catalog';
 import { courses, internships, services } from './data';
 import { useHashRoute } from './hooks/useHashRoute';
@@ -17,6 +18,7 @@ export default function App() {
 
   let page: React.ReactNode = <Home />;
   if (route.name === 'about') page = <About />;
+  else if (route.name === 'works') page = <Works />;
   else if (route.name === 'contact') page = <Contact sent={route.sent} />;
   else if (route.name === 'courses') page = <CourseList courses={courses} />;
   else if (route.name === 'course') {

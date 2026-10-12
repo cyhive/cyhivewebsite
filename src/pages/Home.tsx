@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="courses" className="section-y bg-bg-alt">
+      <section id="courses" className="section-y scroll-mt-16 bg-bg-alt">
         <div className="shell">
           <SectionHeader
             eyebrow="Programs"
@@ -98,7 +98,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="section-y">
+      <section id="services" className="section-y scroll-mt-16">
         <div className="shell">
           <SectionHeader
             eyebrow="What We Offer"
@@ -123,7 +123,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="internships" className="section-y bg-bg-alt">
+      <section id="internships" className="section-y scroll-mt-16 bg-bg-alt">
         <div className="shell">
           <SectionHeader
             eyebrow="Internships"
@@ -148,7 +148,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-y relative overflow-hidden">
+      <section id="about" className="section-y relative scroll-mt-16 overflow-hidden">
         <div className="pointer-events-none absolute right-0 bottom-0 size-96 rounded-full bg-violet-deep/8 blur-[120px]" />
         <div className="shell relative grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div>

@@ -163,6 +163,25 @@ export function CourseDetail({ course }: { course: Course }) {
         </div>
       </section>
 
+      <section className="py-10 md:py-14">
+        <div className="shell">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-white">Practical Projects</h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {course.projects.map((project, index) => (
+                <article key={project.title} className="card rounded-xl p-5">
+                  <span className="flex size-7 items-center justify-center rounded-lg bg-violet/15 font-mono text-xs text-violet-light">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="font-display mt-4 font-semibold text-white">{project.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted">{project.desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-10 md:py-12">
         <div className="shell">
           <div className="mx-auto max-w-3xl xl:max-w-4xl">
@@ -192,23 +211,41 @@ export function CourseDetail({ course }: { course: Course }) {
 export function ServiceDetail({ service }: { service: Service }) {
   return (
     <>
-      <section className="relative overflow-hidden pt-24 pb-10 md:pt-32">
-        <div className="pointer-events-none absolute top-20 left-1/3 size-80 rounded-full bg-violet/10 blur-[100px]" />
+      <section className="relative overflow-hidden pt-24 pb-12 text-center md:pt-36 md:pb-20">
+        <div className="pointer-events-none absolute top-20 left-1/3 size-96 rounded-full bg-violet/10 blur-[120px]" />
         <div className="shell relative">
-          <BackLink />
-          <span className="text-4xl">{service.icon}</span>
-          <h1 className="font-display mt-4 max-w-3xl text-[clamp(1.75rem,4vw,3.25rem)] font-bold text-white">{service.title}</h1>
-          <p className="mt-5 max-w-xl text-sm leading-[26px] text-muted md:text-base">{service.desc}</p>
-          <div className="mt-8">
-            <PrimaryButton onClick={() => navigate('#/contact')}>Get in Touch</PrimaryButton>
-          </div>
+          <p className="eyebrow">What We Offer</p>
+          <h1 className="font-display mt-3 text-[clamp(2.25rem,6vw,4rem)] font-bold text-white">Our Services</h1>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted md:text-lg">
+            Digital solutions designed to help businesses, individuals, and organizations bring their ideas to life.
+          </p>
         </div>
       </section>
-      <section className="py-10 md:py-12">
-        <div className="shell">
-          <div className="max-w-3xl">
-            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-white">About this Service</h2>
-            <p className="mt-4 text-sm leading-[26px] text-muted md:text-base">{service.about}</p>
+
+      <section className="pb-16 md:pb-24">
+        <div className="shell grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">{service.icon}</span>
+              <span className="rounded-full border border-violet/25 bg-violet/12 px-3 py-1 text-xs font-medium text-violet-light">Service</span>
+            </div>
+            <h2 className="font-display mt-4 text-[clamp(2rem,4vw,3rem)] font-bold text-white">{service.title}</h2>
+            <p className="mt-2 text-sm font-medium text-violet">{service.subtitle}</p>
+            <p className="mt-4 text-sm leading-7 text-muted md:text-base">{service.about}</p>
+            <ul className="mt-6 grid gap-2.5">
+              {service.features.map(feature => (
+                <li key={feature} className="flex items-center gap-3 text-sm text-white/80">
+                  <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-violet/20 text-[10px] text-violet-light">✓</span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <PrimaryButton onClick={() => navigate('#/contact')}>Get a Quote</PrimaryButton>
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-violet/20 bg-card">
+            <img src={service.image} alt="" className="aspect-[16/10] w-full object-cover" />
           </div>
         </div>
       </section>
@@ -226,36 +263,83 @@ export function InternshipDetail({ internship }: { internship: Internship }) {
   return (
     <>
       <section className="relative overflow-hidden pt-24 pb-10 md:pt-32">
-        <div className="pointer-events-none absolute top-20 left-1/3 size-80 rounded-full bg-violet/10 blur-[100px]" />
+        <div className="pointer-events-none absolute top-20 left-1/3 size-96 rounded-full bg-violet/10 blur-[120px]" />
         <div className="shell relative">
           <BackLink />
-          <span className="text-4xl">{internship.icon}</span>
-          <h1 className="font-display mt-4 max-w-3xl text-[clamp(1.75rem,4vw,3.25rem)] font-bold text-white">{internship.title} Internship</h1>
-          <p className="mt-5 max-w-xl text-sm leading-[26px] text-muted md:text-base">{internship.desc}</p>
-          <div className="mt-8">
-            <PrimaryButton onClick={() => navigate('#/contact')}>Apply Now</PrimaryButton>
-          </div>
-        </div>
-      </section>
-      <section className="py-10 md:py-12">
-        <div className="shell">
-          <div className="max-w-3xl">
-            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-white">About the Program</h2>
-            <p className="mt-4 text-sm leading-[26px] text-muted md:text-base">{internship.about}</p>
-            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {info.map(item => (
-                <div key={item.label} className="rounded-xl border border-violet/18 bg-card p-4">
-                  <p className="text-xs text-muted">{item.label}</p>
-                  <p className="mt-1 text-sm text-white">{item.value}</p>
-                </div>
-              ))}
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <span className="inline-flex rounded-full border border-violet/25 bg-violet/12 px-3 py-1.5 text-xs font-medium text-violet-light">
+                Internship Program
+              </span>
+              <h1 className="font-display mt-5 text-[clamp(2rem,4.5vw,3.5rem)] leading-tight font-bold text-white">{internship.headline}</h1>
+              <p className="mt-5 max-w-xl text-sm leading-7 text-muted md:text-base">{internship.desc}</p>
+              <div className="mt-8">
+                <PrimaryButton onClick={() => navigate('#/contact')}>Apply Now</PrimaryButton>
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-2xl border border-violet/20 bg-card">
+              <img src={internship.image} alt="" className="aspect-[16/10] w-full object-cover" />
             </div>
           </div>
         </div>
       </section>
+
+      <section className="bg-bg-alt py-12 md:py-16">
+        <div className="shell">
+          <div className="max-w-4xl">
+            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-white">About the Program</h2>
+            <p className="mt-4 text-sm leading-[26px] text-muted md:text-base">{internship.about}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16">
+        <div className="shell">
+          <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-white">Learning Topics</h2>
+          <div className="mt-6 grid max-w-4xl gap-3 sm:grid-cols-2">
+            {internship.topics.map(topic => (
+              <div key={topic} className="flex items-center gap-3 rounded-xl border border-violet/15 bg-card p-4 text-sm text-white/80">
+                <span className="size-1.5 shrink-0 rounded-full bg-violet" />
+                {topic}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-alt py-12 md:py-16">
+        <div className="shell">
+          <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-white">Practical Learning Opportunities</h2>
+          <div className="mt-6 grid max-w-4xl gap-4 sm:grid-cols-2">
+            {internship.opportunities.map((item, index) => (
+              <div key={item} className="flex items-start gap-3 rounded-xl border border-violet/15 bg-card p-4 text-sm leading-6 text-white/80">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-violet/15 font-mono text-xs text-violet-light">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16">
+        <div className="shell">
+          <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-white">Program Information</h2>
+          <div className="mt-6 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2">
+            {info.map(item => (
+              <div key={item.label} className="rounded-xl border border-violet/18 bg-card p-4">
+                <p className="text-xs text-violet-light">{item.label}</p>
+                <p className="mt-1 text-sm text-white">{item.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <CtaBanner
-        title={`Start Your ${internship.title} Internship`}
-        desc="Connect with CYHIVE to learn more about this internship program."
+        title={`Apply for ${internship.title}`}
+        desc="Strengthen your technical skills through focused, practical learning. Contact CYHIVE to learn more about this program."
         primary="Apply Now"
         onPrimary={() => navigate('#/contact')}
       />
