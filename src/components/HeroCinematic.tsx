@@ -379,7 +379,7 @@ export default function HeroCinematic() {
               ))}
             </div>
           </div>
-          <div className={`relative z-[1] pt-[18vh] md:pt-[16vh] ${entered ? 'hero-in' : 'hero-from-top'}`}>
+          <div className={`relative z-[1] pt-[31svh] sm:pt-[18vh] md:pt-[16vh] ${entered ? 'hero-in' : 'hero-from-top'}`}>
             <div ref={headingRef}>
               <p data-text="CYHIVE" className="text-flow-glow font-wordmark text-[clamp(2.8rem,14vw,12rem)] leading-none font-normal tracking-[0.04em] text-white">
                 <span className="text-flow">CYHIVE</span>
@@ -388,7 +388,7 @@ export default function HeroCinematic() {
           </div>
 
           <div
-            className={`relative z-[2] -mt-[16vh] flex min-h-0 w-full flex-1 items-end justify-center pb-[4vh] md:pb-[2vh] ${
+            className={`relative z-[2] -mt-[16vh] flex min-h-0 w-full flex-1 items-end justify-center pb-[32svh] sm:pb-[4vh] md:pb-[2vh] ${
               entered && robotReady ? 'hero-in hero-robot-in' : 'hero-from-bottom'
             }`}
           >
